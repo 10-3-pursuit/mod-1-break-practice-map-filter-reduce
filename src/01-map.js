@@ -29,7 +29,9 @@ function doubleAndAdd(arr, value) {
       'BANANA FRUIT'
     ]
  */
-function concatenateAndUppercase(arr, str) {}
+function concatenateAndUppercase(arr, str) {
+  return arr.map((word) => word.toUpperCase() + str.toUpperCase());
+}
 
 /**convertToObjects
  * Converts an array of strings to an array of objects with properties extracted from the strings.
@@ -43,7 +45,40 @@ function concatenateAndUppercase(arr, str) {}
  * [ { name: 'John' }, { age: '30' }, { city: 'New York' } ]
  */
 
-function convertToObjects(arr) {}
+// function convertToObjects(arr) {
+//   const result = [];
+//   const mappedArray = arr.map((ele) => {
+//     const splitArray = ele.split(":");
+//     result.push({ [splitArray[0]]: splitArray[1] });
+
+//   });
+//   return result;
+
+// }
+
+function convertToObjects(arr) {
+  // Use the `map()` method to transform each string in the input array.
+  // The `map()` method applies a function to each element of the array
+  // and returns a new array with the results of the function.
+
+  return arr.map((mappedArray) => {
+    // Inside the `map()` function, each `mappedArray` is a string
+    // in the input array.
+
+    // Use the `split(":")` method to split the string into an array
+    // by separating it at the colon (":").
+    const [key, value] = mappedArray.split(":");
+
+    // Create a new object with a key-value pair, where the key is
+    // the first part of the split string (before ":") and the value
+    // is the second part (after ":").
+    // The key is enclosed in square brackets to create a dynamic property name.
+    return { [key]: value };
+  });
+}
+
+// The function returns an array of objects, where each object represents
+// a key-value pair from the input strings.
 
 /**transformToASCII
  * https://www.asciitable.com/
@@ -56,11 +91,21 @@ function convertToObjects(arr) {}
  * [ [ 100, 111, 103 ], [ 99, 97, 116 ] ]
  */
 
-function transformToASCII(arr) {}
+function transformToASCII(arr) {
+  // Use .map() to transform each string in the input array
+  const result = arr.map((str) => {
+    // Use .split('') to split the string into an array of characters
+    // Use .map() again to convert each character to its ASCII code
+    return str.split("").map((char) => char.charCodeAt(0));
+  });
+
+  // Return the resulting array
+  return result;
+}
 
 module.exports = {
   convertToObjects,
   transformToASCII,
   doubleAndAdd,
-  concatenateAndUppercase
+  concatenateAndUppercase,
 };
